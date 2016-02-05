@@ -29,23 +29,22 @@ public class UserService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.closeAll(resultSet, pstmt, connection);
         }
         return false;
     }
 
-    public void register(User user) {
+    public boolean register(User user) {
         String sql = "INSERT INTO tb_user(username,password) VALUES (?,?)";
         try {
             connection = DBUtil.getConnection();
             pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
+            pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.closeAll(resultSet, pstmt, connection);
         }
+        return false;
     }
 }

@@ -28,17 +28,4 @@ public class DBUtil {
     public static Connection getConnection() {
         return connection;
     }
-
-    public static void closeAll(ResultSet resultSet, PreparedStatement pstmt, Connection connection) {
-        try {
-            if (resultSet != null)
-                resultSet.close();
-            if (pstmt != null)
-                pstmt.close();
-            if (connection != null)
-                connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

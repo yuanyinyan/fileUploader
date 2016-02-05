@@ -6,4 +6,9 @@ package com.socketExercise.socket;
  * Created by yuanyin on 16/2/1.
  */
 public class StartClient {
+
+    public static void main(String[] args) {
+        SocketClient client = new SocketClient();
+        client.showMainMenu();
+    }
 }

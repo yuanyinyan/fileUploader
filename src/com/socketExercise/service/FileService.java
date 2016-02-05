@@ -16,7 +16,7 @@ public class FileService {
     private PreparedStatement pstmt = null;
     private ResultSet resultSet = null;
 
-    public void save(File file) {
+    public boolean save(File file) {
         String sql = "INSERT INTO tb_file(fname,fcontent) VALUES (?,?)";
         connection = DBUtil.getConnection();
         try {
@@ -24,11 +24,11 @@ public class FileService {
             pstmt.setString(1, file.getFname());
             pstmt.setBytes(2, file.getFcontent());
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            DBUtil.closeAll(resultSet, pstmt, connection);
         }
+        return false;
     }
 
 }
